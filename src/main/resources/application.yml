@@ -1,0 +1,23 @@
+server:
+  port: "5000"
+logging:
+  level:
+    web: DEBUG
+spring:
+  application:
+    name: dojo.spring
+  sql:
+    init:
+      platform: postgres
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/dojo.spring"
+    username: "postgres"
+    password: "iiscwlan"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
