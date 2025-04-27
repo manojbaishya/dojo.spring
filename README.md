@@ -5,6 +5,10 @@
 * Swagger URL: `{{protocol}}://{{hostname}}:{{port}}/swagger-ui/index.html`
 * OpenAPI JSON Docs: `{{protocol}}://{{hostname}}:{{port}}/v3/api-docs`
 
+### Wishlist
+
+1. Implement Checker Framework instrumentation on the code
+
 ### Reference Documentation
 
 For further reference, please consider the following sections:
