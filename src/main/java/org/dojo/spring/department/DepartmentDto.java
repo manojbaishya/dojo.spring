@@ -1,3 +1,7 @@
 package org.dojo.spring.department;
 
-public record DepartmentDto(String name, String address, String code) { }
+import org.dojo.spring.department.billing.TransactionDto;
+
+import java.util.List;
+
+public record DepartmentDto(String name, String address, String code, List<TransactionDto> transactions) { }

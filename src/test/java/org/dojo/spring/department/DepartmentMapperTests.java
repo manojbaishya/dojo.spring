@@ -11,7 +11,7 @@ public class DepartmentMapperTests {
 
     @Test
     void testDeserialize() {
-        var actualDto = new DepartmentDto(expectedName, expectedAddress, expectedCode);
+        var actualDto = new DepartmentDto(expectedName, expectedAddress, expectedCode, null);
         var actualEntity = DepartmentMapper.INSTANCE.deserialize(actualDto);
 
         assertThat(actualEntity.getName()).isEqualTo(expectedName);

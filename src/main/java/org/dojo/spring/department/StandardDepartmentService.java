@@ -1,5 +1,7 @@
 package org.dojo.spring.department;
 
+import org.dojo.spring.department.billing.Transaction;
+import org.dojo.spring.department.billing.TransactionRepository;
 import org.dojo.spring.shared.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,11 @@ public class StandardDepartmentService implements DepartmentService {
     private static final String ERROR_MESSAGE = "Department does not exist for this id: %s";
 
     private final DepartmentRepository departmentRepository;
-    public StandardDepartmentService(DepartmentRepository departmentRepository) { this.departmentRepository = departmentRepository; }
+    private final TransactionRepository transactionRepository;
+    public StandardDepartmentService(DepartmentRepository departmentRepository, TransactionRepository transactionRepository) {
+        this.departmentRepository = departmentRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
     @Override
     public Department addDepartment(final Department department) { return departmentRepository.save(department); }
@@ -54,5 +60,11 @@ public class StandardDepartmentService implements DepartmentService {
         } catch (final Exception ex) {
             return false;
         }
+    }
+
+    @Override
+    public Transaction addTransaction(Department department, Transaction transaction) {
+        transaction.setDepartment(department);
+        return transactionRepository.save(transaction);
     }
 }

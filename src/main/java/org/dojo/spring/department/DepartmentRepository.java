@@ -7,6 +7,7 @@ import java.util.Optional;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
-    public Optional<Department> findByName(String name);
-    public Optional<Department> findByNameIgnoreCase(String name);
+    Optional<Department> findByName(String name);
+
+    Optional<Department> findByNameIgnoreCase(String name);
 }
