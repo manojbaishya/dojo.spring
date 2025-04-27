@@ -12,69 +12,69 @@ import org.hibernate.validator.constraints.Length;
 @Table(name = "departments")
 public class Department {
     public Department() { }
-    public Department(Long departmentId, String departmentName, String departmentAddress, String departmentCode) {
-        this.setDepartmentId(departmentId);
-        this.setDepartmentName(departmentName);
-        this.setDepartmentAddress(departmentAddress);
-        this.setDepartmentCode(departmentCode);
+    public Department(Long id, String name, String address, String code) {
+        this.setId(id);
+        this.setName(name);
+        this.setAddress(address);
+        this.setCode(code);
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long departmentId;
-    public Long getDepartmentId() { return departmentId; }
-    public void setDepartmentId(Long departmentId) { this.departmentId = departmentId; }
+    private Long id;
+    public Long getId() { return id; }
+    public void setId(Long departmentId) { this.id = departmentId; }
 
     @NotBlank(message = "Department Name cannot be empty.")
-    private String departmentName;
-    public String getDepartmentName() { return departmentName; }
-    public void setDepartmentName(String departmentName) { this.departmentName = departmentName; }
+    private String name;
+    public String getName() { return name; }
+    public void setName(String departmentName) { this.name = departmentName; }
 
-    private String departmentAddress;
-    public String getDepartmentAddress() { return departmentAddress; }
-    public void setDepartmentAddress(String departmentAddress) { this.departmentAddress = departmentAddress; }
+    private String address;
+    public String getAddress() { return address; }
+    public void setAddress(String departmentAddress) { this.address = departmentAddress; }
 
     @Length(min = 0, max = 50)
-    private String departmentCode;
-    public String getDepartmentCode() { return departmentCode; }
-    public void setDepartmentCode(String departmentCode) { this.departmentCode = departmentCode; }
+    private String code;
+    public String getCode() { return code; }
+    public void setCode(String departmentCode) { this.code = departmentCode; }
 
     @Override
     public String toString() {
-        return String.format("Department [departmentId=%s, departmentName=%s, departmentAddress=%s, departmentCode=%s]", departmentId, departmentName, departmentAddress, departmentCode);
+        return String.format("Department [id=%s, name=%s, address=%s, code=%s]", id, name, address, code);
     }
 
     public Department(Builder builder) {
-        this.setDepartmentId(builder.departmentId);
-        this.setDepartmentName(builder.departmentName);
-        this.setDepartmentAddress(builder.departmentAddress);
-        this.setDepartmentCode(builder.departmentCode);
+        this.setId(builder.id);
+        this.setName(builder.name);
+        this.setAddress(builder.address);
+        this.setCode(builder.code);
     }
 
-    public static Builder builder(Long departmentId) { return new Builder(departmentId); }
+    public static Builder builder(Long id) { return new Builder(id); }
 
     public static class Builder {
-        private Long departmentId = null;
+        private Long id = null;
 
-        Builder(Long departmentId) { this.departmentId = departmentId; }
+        Builder(Long id) { this.id = id; }
 
         public Department build() { return new Department(this); }
 
-        private String departmentName = null;
-        public Builder departmentName(String departmentName) {
-            this.departmentName = departmentName;
+        private String name = null;
+        public Builder name(String name) {
+            this.name =  name;
             return this;
         }
 
-        private String departmentAddress = null;
-        public Builder departmentAddress(String departmentAddress) {
-            this.departmentAddress = departmentAddress;
+        private String address = null;
+        public Builder address(String address) {
+            this.address = address;
             return this;
         }
 
-        private String departmentCode = null;
-        public Builder departmentCode(String departmentCode) {
-            this.departmentCode = departmentCode;
+        private String code = null;
+        public Builder code(String code) {
+            this.code = code;
             return this;
         }
     }

@@ -23,20 +23,20 @@ class StandardDepartmentServiceTests {
 
     private final Department expected = Department
             .builder(96378541L)
-            .departmentName("SampleDepartmentName")
-            .departmentAddress("SampleDepartmentAddress")
-            .departmentCode("XC32B")
+            .name("SampleDepartmentName")
+            .address("SampleDepartmentAddress")
+            .code("XC32B")
             .build();
     @BeforeEach
     void setup() {
-        Mockito.when(departmentRepository.findByDepartmentNameIgnoreCase(expected.getDepartmentName())).thenReturn(Optional.of(expected));
+        Mockito.when(departmentRepository.findByNameIgnoreCase(expected.getName())).thenReturn(Optional.of(expected));
     }
 
     @Test
     @DisplayName("Get department by name.")
     void whenValidDepartmentNameIsGivenThenDepartmentShouldBeFound() throws ResourceNotFoundException {
-        Department actual = departmentService.getDepartmentByName(expected.getDepartmentName());
+        Department actual = departmentService.getDepartmentByName(expected.getName());
         assertThat(actual).isNotNull();
-        assertThat(actual.getDepartmentName()).isEqualTo(expected.getDepartmentName());
+        assertThat(actual.getName()).isEqualTo(expected.getName());
     }
 }

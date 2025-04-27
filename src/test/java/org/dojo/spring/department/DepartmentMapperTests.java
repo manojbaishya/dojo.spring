@@ -14,9 +14,9 @@ public class DepartmentMapperTests {
         var actualDto = new DepartmentDto(expectedName, expectedAddress, expectedCode);
         var actualEntity = DepartmentMapper.INSTANCE.deserialize(actualDto);
 
-        assertThat(actualEntity.getDepartmentName()).isEqualTo(expectedName);
-        assertThat(actualEntity.getDepartmentAddress()).isEqualTo(expectedAddress);
-        assertThat(actualEntity.getDepartmentCode()).isEqualTo(expectedCode);
+        assertThat(actualEntity.getName()).isEqualTo(expectedName);
+        assertThat(actualEntity.getAddress()).isEqualTo(expectedAddress);
+        assertThat(actualEntity.getCode()).isEqualTo(expectedCode);
     }
 
     @Test
@@ -24,9 +24,9 @@ public class DepartmentMapperTests {
         var actualEntity = new Department(529051L, expectedName, expectedAddress, expectedCode);
         var actualDto = DepartmentMapper.INSTANCE.serialize(actualEntity);
 
-        assertThat(actualDto.departmentName()).isEqualTo(expectedName);
-        assertThat(actualDto.departmentAddress()).isEqualTo(expectedAddress);
-        assertThat(actualDto.departmentCode()).isEqualTo(expectedCode);
+        assertThat(actualDto.name()).isEqualTo(expectedName);
+        assertThat(actualDto.address()).isEqualTo(expectedAddress);
+        assertThat(actualDto.code()).isEqualTo(expectedCode);
 
     }
 }

@@ -1,7 +1,6 @@
 package org.dojo.spring.department;
 
 import org.dojo.spring.shared.exceptions.ResourceNotFoundException;
-import org.dojo.spring.shared.utilities.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class StandardDepartmentService implements DepartmentService {
 
     @Override
     public Department getDepartmentByName(final String departmentName) throws ResourceNotFoundException {
-        return departmentRepository.findByDepartmentNameIgnoreCase(departmentName).orElseThrow(() -> new ResourceNotFoundException(String.format("Department with name %s not found!", departmentName)));
+        return departmentRepository.findByNameIgnoreCase(departmentName).orElseThrow(() -> new ResourceNotFoundException(String.format("Department with name %s not found!", departmentName)));
     }
 
     @Override
@@ -36,12 +35,12 @@ public class StandardDepartmentService implements DepartmentService {
         final Department currentDepartment =
                 departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException(ERROR_MESSAGE.formatted(departmentId)));
 
-        if (isNotNullOrEmpty(department.getDepartmentName()))
-            currentDepartment.setDepartmentName(department.getDepartmentName());
-        if (isNotNullOrEmpty(department.getDepartmentAddress()))
-            currentDepartment.setDepartmentAddress(department.getDepartmentAddress());
-        if (isNotNullOrEmpty(department.getDepartmentCode()))
-            currentDepartment.setDepartmentCode(department.getDepartmentCode());
+        if (isNotNullOrEmpty(department.getName()))
+            currentDepartment.setName(department.getName());
+        if (isNotNullOrEmpty(department.getAddress()))
+            currentDepartment.setAddress(department.getAddress());
+        if (isNotNullOrEmpty(department.getCode()))
+            currentDepartment.setCode(department.getCode());
 
         return departmentRepository.save(currentDepartment);
     }

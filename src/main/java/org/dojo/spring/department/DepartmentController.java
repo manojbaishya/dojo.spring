@@ -25,7 +25,7 @@ public class DepartmentController {
     public DepartmentController(DepartmentService departmentService) { this.departmentService = departmentService; }
 
     @PostMapping("/department")
-    public ResponseEntity<DepartmentDto> saveDepartment(@RequestBody @Valid DepartmentDto departmentDto) {
+    public ResponseEntity<DepartmentDto> addDepartment(@RequestBody @Valid DepartmentDto departmentDto) {
         logger.info("Creating Department object.");
         var department = DepartmentMapper.INSTANCE.deserialize(departmentDto);
         return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.addDepartment(department)));

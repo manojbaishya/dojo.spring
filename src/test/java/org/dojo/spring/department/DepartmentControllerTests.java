@@ -24,9 +24,9 @@ class DepartmentControllerTests {
     public DepartmentControllerTests(WebApplicationContext applicationContext) { this.webApplicationContext = applicationContext; }
 
     private final Department department = Department.builder(98765L)
-                                                    .departmentName("TestControllerDepartment")
-                                                    .departmentAddress("TestControllerDepartmentAddress")
-                                                    .departmentCode("TCD001")
+                                                    .name("TestControllerDepartment")
+                                                    .address("TestControllerDepartmentAddress")
+                                                    .code("TCD001")
                                                     .build();
 
     @MockitoBean
@@ -38,11 +38,11 @@ class DepartmentControllerTests {
     }
 
     @Test
-    void testSaveDepartment() throws Exception {
+    void testAddDepartment() throws Exception {
         var inputDepartment = Department.builder(null)
-                                        .departmentName(department.getDepartmentName())
-                                        .departmentAddress(department.getDepartmentAddress())
-                                        .departmentCode(department.getDepartmentCode())
+                                        .name(department.getName())
+                                        .address(department.getAddress())
+                                        .code(department.getCode())
                                         .build();
 
         Mockito.when(departmentService.addDepartment(inputDepartment)).thenReturn(department);
@@ -52,14 +52,14 @@ class DepartmentControllerTests {
                        .content(String.format(
                                        """
                                                            {
-                                                               "departmentName": "%s",
+                                                               "name": "%s",
                                                                "departmentAddress": "%s",
                                                                "departmentCode": "%s"
                                                            }
                                                """,
-                                       department.getDepartmentName(),
-                                       department.getDepartmentAddress(),
-                                       department.getDepartmentCode()
+                                       department.getName(),
+                                       department.getAddress(),
+                                       department.getCode()
                                )
                        )
                )
@@ -76,7 +76,7 @@ class DepartmentControllerTests {
                            .contentType(MediaType.APPLICATION_JSON)
                    )
                    .andExpect(status().isOk())
-                   .andExpect(jsonPath("$.departmentName").value(department.getDepartmentName())
+                   .andExpect(jsonPath("$.name").value(department.getName())
                    );
         } catch (Exception e) {
             System.out.println(e.getMessage());

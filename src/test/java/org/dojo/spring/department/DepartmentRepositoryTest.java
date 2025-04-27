@@ -19,17 +19,17 @@ class DepartmentRepositoryTest {
     private TestEntityManager testEntityManager;
 
     private final Department expected = Department.builder(null)
-                                                  .departmentName("Mechanical Engineering")
-                                                  .departmentAddress("Tower C Building")
-                                                  .departmentCode("ME001")
+                                                  .name("Mechanical Engineering")
+                                                  .address("Tower C Building")
+                                                  .code("ME001")
                                                   .build();
 
     @BeforeEach
     void setup() {
         var department = Department.builder(null)
-                                   .departmentName(expected.getDepartmentName())
-                                   .departmentAddress(expected.getDepartmentAddress())
-                                   .departmentCode(expected.getDepartmentCode())
+                                   .name(expected.getName())
+                                   .address(expected.getAddress())
+                                   .code(expected.getCode())
                                    .build();
 
         testEntityManager.persist(department);
@@ -37,7 +37,7 @@ class DepartmentRepositoryTest {
 
     @Test
     void whenFindByIdThenReturnDepartment() {
-        Optional<Department> department = departmentRepository.findByDepartmentName(expected.getDepartmentName());
-        department.ifPresent(dept -> assertThat(dept.getDepartmentCode()).isEqualTo(expected.getDepartmentCode()));
+        Optional<Department> department = departmentRepository.findByName(expected.getName());
+        department.ifPresent(dept -> assertThat(dept.getCode()).isEqualTo(expected.getCode()));
     }
 }

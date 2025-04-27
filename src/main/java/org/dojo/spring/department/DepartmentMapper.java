@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface DepartmentMapper {
     DepartmentMapper INSTANCE = Mappers.getMapper(DepartmentMapper.class);
 
-    @Mapping(target = "departmentId", ignore = true)
+    @Mapping(target = "id", ignore = true)
     Department deserialize(DepartmentDto dto);
 
     @InheritInverseConfiguration
