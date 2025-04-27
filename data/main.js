@@ -1,5 +1,5 @@
-import { createDepartmentData } from "./createDepartmentData.js";
+import { createDepartments } from "./createDepartments.js";
 import { testEndpoints } from "./testEndpoints.js";
 
-await createDepartmentData();
+await createDepartments();
 await testEndpoints();

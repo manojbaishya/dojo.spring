@@ -1,20 +1,14 @@
 export async function testEndpoints() {
-    const url = "http://localhost:5000/department";
+    const url = "http://localhost:5000/departments";
     try {
         const response = await fetch(url, {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                departmentName: "dummy",
-                departmentAddress: "dummy",
-                departmentCode: "dummy"
-            })
+            }
         });
 
         console.log(`Response completed with status code ${response.status}`);
-
         const responseData = await response.json();
         console.log(responseData);
     } catch (error) {
