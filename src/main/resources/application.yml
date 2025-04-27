@@ -1,5 +1,5 @@
 server:
-  port: "5000"
+  port: ${SERVER_PORT:5000}
 logging:
   level:
     web: DEBUG
@@ -10,9 +10,9 @@ spring:
     init:
       platform: postgres
   datasource:
-    url: "jdbc:postgresql://localhost:5432/dojo.spring"
-    username: "postgres"
-    password: "iiscwlan"
+    url: jdbc:postgresql://${DATABASE_HOST}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update

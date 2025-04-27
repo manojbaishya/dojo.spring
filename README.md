@@ -1,5 +1,10 @@
 # Getting Started
 
+### Developer Guide
+
+* Swagger URL: `{{protocol}}://{{hostname}}:{{port}}/swagger-ui/index.html`
+* OpenAPI JSON Docs: `{{protocol}}://{{hostname}}:{{port}}/v3/api-docs`
+
 ### Reference Documentation
 
 For further reference, please consider the following sections:
