@@ -1,0 +1,19 @@
+meta {
+  name: Get Transactions of a Department
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{protocol}}://{{hostName}}{{path}}/transactions?departmentName={{departmentName}}
+  body: none
+  auth: none
+}
+
+params:query {
+  departmentName: {{departmentName}}
+}
+
+vars:pre-request {
+  departmentName: Production
+}

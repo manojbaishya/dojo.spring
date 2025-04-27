@@ -1,0 +1,33 @@
+meta {
+  name: Update a Department
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{protocol}}://{{hostName}}{{path}}/department/:id
+  body: json
+  auth: none
+}
+
+params:query {
+  : 
+}
+
+params:path {
+  id: 987564
+}
+
+body:json {
+  {
+    "name": "",
+    "address": "",
+    "code": "",
+    "transactions": [
+      {
+        "amount": "",
+        "departmentName": ""
+      }
+    ]
+  }
+}

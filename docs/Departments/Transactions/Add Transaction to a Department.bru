@@ -1,0 +1,18 @@
+meta {
+  name: Add Transaction to a Department
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{protocol}}://{{hostName}}{{path}}/department/transaction
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "amount": "",
+    "departmentName": ""
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Delete a Department
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{protocol}}://{{hostName}}{{path}}/department/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 987564
+}

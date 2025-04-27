@@ -1,0 +1,15 @@
+meta {
+  name: Get Department By Name
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{protocol}}://{{hostName}}{{path}}/department?name=Production
+  body: none
+  auth: none
+}
+
+params:query {
+  name: Production
+}

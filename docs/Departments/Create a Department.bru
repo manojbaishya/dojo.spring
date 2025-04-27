@@ -1,0 +1,25 @@
+meta {
+  name: Create a Department
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{protocol}}://{{hostName}}{{path}}/department
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "",
+    "address": "",
+    "code": "",
+    "transactions": [
+      {
+        "amount": "",
+        "departmentName": ""
+      }
+    ]
+  }
+}
