@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DepartmentConfiguration {
+public class DepartmentDependencies {
     @Bean
     public DepartmentService departmentService(DepartmentRepository departmentRepository, TransactionRepository transactionRepository) {
         return new StandardDepartmentService(departmentRepository, transactionRepository);

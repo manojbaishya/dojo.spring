@@ -2,6 +2,7 @@
   <dictionary name="project">
     <words>
       <w>cmds</w>
+      <w>weatherforecast</w>
     </words>
   </dictionary>
 </component>

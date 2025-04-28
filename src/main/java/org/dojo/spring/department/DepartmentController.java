@@ -14,20 +14,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class DepartmentController {
-
     private final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
     private final DepartmentService departmentService;
     public DepartmentController(DepartmentService departmentService) { this.departmentService = departmentService; }
 
-    @PostMapping("/department")
+    @PostMapping(value = "/department")
     public ResponseEntity<DepartmentDto> addDepartment(@RequestBody @Valid DepartmentDto departmentDto) {
         logger.info("Creating Department object.");
         var department = DepartmentMapper.INSTANCE.deserialize(departmentDto);
