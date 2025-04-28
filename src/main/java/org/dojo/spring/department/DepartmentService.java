@@ -6,7 +6,9 @@ import org.dojo.spring.shared.exceptions.ResourceNotFoundException;
 import java.util.List;
 
 public interface DepartmentService {
-    List<Department> getAllDepartments();
+    List<DepartmentProjection> getAllDepartments();
+
+    List<Department> getAllDepartmentsWithTransactions();
 
     Department getDepartmentById(Long departmentId) throws ResourceNotFoundException;
 

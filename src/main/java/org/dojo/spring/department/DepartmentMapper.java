@@ -15,4 +15,7 @@ public interface DepartmentMapper {
 
     @InheritInverseConfiguration
     DepartmentDto serialize(Department entity);
+
+    @Mapping(target = "transactions", ignore = true)
+    DepartmentDto serialize(DepartmentProjection projection);
 }

@@ -24,7 +24,9 @@ public class StandardDepartmentService implements DepartmentService {
     public Department addDepartment(final Department department) { return departmentRepository.save(department); }
 
     @Override
-    public List<Department> getAllDepartments() { return departmentRepository.findAll(); }
+    public List<DepartmentProjection> getAllDepartments() { return departmentRepository.findAllWithoutTransactions(); }
+    @Override
+    public List<Department> getAllDepartmentsWithTransactions() { return departmentRepository.findAll(); }
 
     @Override
     public Department getDepartmentById(final Long departmentId) throws ResourceNotFoundException {

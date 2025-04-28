@@ -35,10 +35,21 @@ public class DepartmentController {
     }
 
     @GetMapping(value = "/departments")
-    public ResponseEntity<List<DepartmentDto>> getDepartments() {
+    public ResponseEntity<List<DepartmentProjection>> getDepartments() {
         logger.info("Getting all Department objects.");
-        var departments = departmentService.getAllDepartments();
-        return ResponseEntity.ok(departments.stream().map(DepartmentMapper.INSTANCE::serialize).toList());
+        return ResponseEntity.ok(departmentService.getAllDepartments());
+    }
+
+    @GetMapping(value = "/departments", params = {"transactions"})
+    public ResponseEntity<List<DepartmentDto>> getDepartments(@RequestParam(name = "transactions") Boolean transactions) {
+        logger.info("Getting all Department objects with Transactions included.");
+        if (transactions) {
+            List<Department> departments = departmentService.getAllDepartmentsWithTransactions();
+            return ResponseEntity.ok(departments.stream().map(DepartmentMapper.INSTANCE::serialize).toList());
+        } else {
+            List<DepartmentProjection> departments = departmentService.getAllDepartments();
+            return ResponseEntity.ok(departments.stream().map(DepartmentMapper.INSTANCE::serialize).toList());
+        }
     }
 
     @GetMapping(value = "/department", params = { "id" })
