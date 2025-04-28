@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run All Tests" type="JUnit" factoryName="JUnit">
-    <module name="spring" />
+    <module name="dojo.spring" />
     <option name="PACKAGE_NAME" value="org.dojo.spring" />
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />
