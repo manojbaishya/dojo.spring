@@ -47,7 +47,7 @@ class DepartmentControllerTests {
 
         Mockito.when(departmentService.addDepartment(inputDepartment)).thenReturn(department);
 
-        mockMvc.perform(post("/department")
+        mockMvc.perform(post("/api/department")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.format(
                                 """
@@ -71,7 +71,7 @@ class DepartmentControllerTests {
         Mockito.when(departmentService.getDepartmentById(id)).thenReturn(department);
 
         try {
-            mockMvc.perform(get("/department?id={departmentId}", id)
+            mockMvc.perform(get("/api/department?id={departmentId}", id)
                            .contentType(MediaType.APPLICATION_JSON)
                    )
                    .andExpect(status().isOk())
