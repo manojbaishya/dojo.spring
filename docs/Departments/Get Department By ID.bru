@@ -1,0 +1,15 @@
+meta {
+  name: Get Department By ID
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{protocol}}://{{hostName}}{{path}}/department?id=5
+  body: none
+  auth: none
+}
+
+params:query {
+  id: 5
+}
