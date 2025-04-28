@@ -3,7 +3,7 @@ version: '3'
 tasks:
   build:
     cmds:
-      - ./mvnw -batch-mode clean verify
+      - ./mvnw --batch-mode clean verify
   run:
     cmds:
       - ./mvnw spring-boot:run

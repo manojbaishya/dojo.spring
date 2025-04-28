@@ -22,10 +22,10 @@ import java.util.Objects;
 public class Department {
     public Department() { }
     public Department(Long id, String name, String address, String code) {
-        this.setId(id);
-        this.setName(name);
-        this.setAddress(address);
-        this.setCode(code);
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.code = code;
     }
 
     @Id

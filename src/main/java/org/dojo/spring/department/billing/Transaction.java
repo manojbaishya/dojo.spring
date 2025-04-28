@@ -20,9 +20,9 @@ import java.util.Objects;
 public class Transaction {
     public Transaction() { }
     public Transaction(Long id, BigDecimal amount, Department department) {
-        this.setId(id);
-        this.setAmount(amount);
-        this.setDepartment(department);
+        this.id = id;
+        this.amount = amount;
+        this.department = department;
     }
 
     @Id

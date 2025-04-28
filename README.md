@@ -7,7 +7,7 @@
 
 ### Wishlist
 
-1. Implement Checker Framework instrumentation on the code
+1. Implement Checker Framework instrumentation on the code — Follow https://github.com/typetools/checker-framework/pull/7055
 
 ### Reference Documentation
 
