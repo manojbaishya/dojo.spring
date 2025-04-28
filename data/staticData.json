@@ -1,0 +1,28 @@
+{
+  "departments": [
+    {
+      "name": "Electrical",
+      "code": "EL"
+    },
+    {
+      "name": "Maintenance",
+      "code": "MN"
+    },
+    {
+      "name": "Production",
+      "code": "PD"
+    },
+    {
+      "name": "Accounts",
+      "code": "AC"
+    },
+    {
+      "name": "Marketing",
+      "code": "MK"
+    },
+    {
+      "name": "Operations",
+      "code": "OP"
+    }
+  ]
+}

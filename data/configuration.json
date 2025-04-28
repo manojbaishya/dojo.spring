@@ -1,0 +1,21 @@
+{
+  "server": {
+    "protocol": "http",
+    "hostname": "localhost",
+    "path": ":5000"
+  },
+  "paths": {
+    "getAllDepartments": {
+      "method": "GET",
+      "name": "departments"
+    },
+    "createDepartments": {
+      "method": "POST",
+      "name": "department"
+    },
+    "addTransaction": {
+      "method": "POST",
+      "name": "department/transaction"
+    }
+  }
+}

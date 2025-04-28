@@ -1,46 +1,19 @@
 import { faker } from '@faker-js/faker';
+import staticData from './staticData.json' with { type: 'json' };
 
-export async function createDepartments() {
+export async function createDepartments(cfg) {
 
-    const departments = [
-        {
-            name: "Electrical",
-            code: `EL-${faker.string.alpha(6)}`,
-            address: faker.location.streetAddress()
-        },
-        {
-            name: "Maintenance",
-            code: `MN-${faker.string.alpha(6)}`,
-            address: faker.location.streetAddress()
-        },
-        {
-            name: "Production",
-            code: `PD-${faker.string.alpha(6)}`,
-            address: faker.location.streetAddress()
-        },
-        {
-            name: "Accounts",
-            code: `AC-${faker.string.alpha(6)}`,
-            address: faker.location.streetAddress()
-        },
-        {
-            name: "Marketing",
-            code: `MK-${faker.string.alpha(6)}`,
-            address: faker.location.streetAddress()
-        },
-        {
-            name: "Operations",
-            code: `OP-${faker.string.alpha(6)}`,
-            address: faker.location.streetAddress()
-        }
-    ];
+    const departments = staticData.departments.map(dept => ({
+        name: dept.name,
+        code: `${dept.code}-${faker.string.alpha(6)}`,
+        address: faker.location.streetAddress()
+    }));
 
-    const url = "http://localhost:5000/department";
+    const url = `${cfg.server.protocol}://${cfg.server.hostname}${cfg.server.path}/${cfg.paths.createDepartments.name}`;
     for (const dept of departments) {
-
         try {
             const response = await fetch(url, {
-                method: "POST",
+                method: `${cfg.paths.createDepartments.method}`,
                 headers: {
                     "Content-Type": 'application/json',
                 },
