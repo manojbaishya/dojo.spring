@@ -2,10 +2,15 @@ server:
   port: ${SERVER_PORT:5000}
 logging:
   level:
-    web: DEBUG
+    web: debug
 spring:
   application:
     name: dojo.spring
+  main:
+    keep-alive: true
+  threads:
+    virtual:
+      enabled: true
   sql:
     init:
       platform: postgres

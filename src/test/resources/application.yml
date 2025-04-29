@@ -2,10 +2,15 @@ server:
   port: 5000
 logging:
   level:
-    web: DEBUG
+    web: debug
 spring:
   application:
     name: dojo.spring
+  main:
+    keep-alive: true
+  threads:
+    virtual:
+      enabled: true
   datasource:
     url: jdbc:h2:mem:springdojotestdb
     driver-class-name: org.h2.Driver
