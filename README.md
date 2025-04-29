@@ -9,11 +9,13 @@
 
 1. Update Bruno API Documentation from SpringDoc OpenAPI JSON files.
    * Migrate the URI paths with `/api` prefix
-2. Migrate the ASP.NET Core Web API project — https://github.com/manojbaishya/dojo.api/
-3. Implement Unit and Integration tests for new models in org.dojo.spring.department.billing.Transaction, org.dojo.spring.todo,  .
-4. Implement performance tests in k6 for the existing models — Department and Transaction.
-5. Implement JWT OAuth 2.0 Authentication and Authorization with RBAC — both Token and Resource Servers in this project
-6. Implement Checker Framework instrumentation on the code — Follow PR https://github.com/typetools/checker-framework/pull/7055
+2. Implement integration with a third party API service using Java's HttpClient
+3. Test Spring Boot Virtual Threads throughput using a database connection
+4. Migrate the ASP.NET Core Web API project — https://github.com/manojbaishya/dojo.api/
+5. Implement Unit and Integration tests for new models in org.dojo.spring.department.billing.Transaction, org.dojo.spring.todo,  .
+6. Implement performance tests in k6 for the existing models — Department and Transaction.
+7. Implement JWT OAuth 2.0 Authentication and Authorization with RBAC — both Token and Resource Servers in this project
+8. Implement Checker Framework instrumentation on the code — Follow PR https://github.com/typetools/checker-framework/pull/7055
 
 ### Reference Documentation
 
