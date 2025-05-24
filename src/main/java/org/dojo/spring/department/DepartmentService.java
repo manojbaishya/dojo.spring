@@ -14,6 +14,8 @@ public interface DepartmentService {
 
     Department getDepartmentByName(String departmentName) throws ResourceNotFoundException;
 
+    DepartmentProjectionDto getDepartmentByNameWithoutTransactions(String departmentName) throws ResourceNotFoundException;
+
     Department addDepartment(Department department);
 
     Department updateDepartment(Long departmentId, Department department) throws ResourceNotFoundException;

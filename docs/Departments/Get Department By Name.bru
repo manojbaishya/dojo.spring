@@ -5,11 +5,12 @@ meta {
 }
 
 get {
-  url: {{protocol}}://{{hostname}}{{path}}/api/department?name=Production
+  url: {{protocol}}://{{hostname}}{{path}}/api/department?name=Marketing&getTransactions=false
   body: none
   auth: none
 }
 
 params:query {
-  name: Production
+  name: Marketing
+  getTransactions: false
 }

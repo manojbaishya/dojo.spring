@@ -11,7 +11,11 @@ import java.util.Optional;
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
     Optional<Department> findByName(String name);
     Optional<Department> findByNameIgnoreCase(String name);
-    
+
+    @Query("SELECT d FROM Department d WHERE d.name = ?1")
+    DepartmentProjection findByNameIgnoreCaseWithoutTransactions(String name);
+
     @Query("SELECT d FROM Department d")
     List<DepartmentProjection> findAllWithoutTransactions();
+
 }

@@ -3,6 +3,9 @@ package org.dojo.spring.department;
 import org.dojo.spring.department.billing.Transaction;
 import org.dojo.spring.department.billing.TransactionRepository;
 import org.dojo.spring.shared.exceptions.ResourceNotFoundException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,20 +28,31 @@ public class StandardDepartmentService implements DepartmentService {
 
     @Override
     public List<DepartmentProjection> getAllDepartments() { return departmentRepository.findAllWithoutTransactions(); }
+
     @Override
     public List<Department> getAllDepartmentsWithTransactions() { return departmentRepository.findAll(); }
 
     @Override
+    @Cacheable(value = "departments", key = "#departmentId")
     public Department getDepartmentById(final Long departmentId) throws ResourceNotFoundException {
         return departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException(ERROR_MESSAGE.formatted(departmentId)));
     }
 
     @Override
+    // @Cacheable(value = "departments", key = "#departmentName")
     public Department getDepartmentByName(final String departmentName) throws ResourceNotFoundException {
         return departmentRepository.findByNameIgnoreCase(departmentName).orElseThrow(() -> new ResourceNotFoundException(String.format("Department with name %s not found!", departmentName)));
     }
+    @Override
+    @Cacheable(value = "departments", key = "#departmentName")
+    public DepartmentProjectionDto getDepartmentByNameWithoutTransactions(String departmentName) throws ResourceNotFoundException {
+        DepartmentProjection department = departmentRepository.findByNameIgnoreCaseWithoutTransactions(departmentName);
+        if (department == null) throw new ResourceNotFoundException(String.format("Department with name %s not found!", departmentName));
+        return new DepartmentProjectionDto(department.getId(), department.getName(), department.getCode(), department.getAddress());
+    }
 
     @Override
+    @CachePut(value = "departments", key = "#department.id")
     public Department updateDepartment(final Long departmentId, final Department department) throws ResourceNotFoundException {
         final Department currentDepartment =
                 departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException(ERROR_MESSAGE.formatted(departmentId)));
@@ -54,6 +68,7 @@ public class StandardDepartmentService implements DepartmentService {
     }
 
     @Override
+    @CacheEvict(value = "departments", key = "#departmentId")
     public boolean deleteDepartmentById(final Long departmentId) throws ResourceNotFoundException {
         final Department department = departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException(ERROR_MESSAGE.formatted(departmentId)));
         try {

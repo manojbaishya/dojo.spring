@@ -59,9 +59,10 @@ public class DepartmentController {
         return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.getDepartmentById(departmentId)));
     }
 
-    @GetMapping(value = "/department", params = { "name" })
-    public ResponseEntity<DepartmentDto> getDepartmentByName(@RequestParam(name = "name") String departmentName) throws ResourceNotFoundException {
+    @GetMapping(value = "/department", params = { "name", "getTransactions" })
+    public ResponseEntity<DepartmentDto> getDepartmentByName(@RequestParam(name = "name") String departmentName, @RequestParam(name = "getTransactions") boolean getTransactions) throws ResourceNotFoundException {
         logger.info("Getting Department object by name.");
+        if (!getTransactions) return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.getDepartmentByNameWithoutTransactions(departmentName)));
         return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.getDepartmentByName(departmentName)));
     }
 

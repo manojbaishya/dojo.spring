@@ -28,11 +28,8 @@ public class WeatherForecastController {
     public List<WeatherForecast> getWeatherForecast() {
         logger.info("Requesting weather forecast.");
 
-        return IntStream.rangeClosed(1, 5)
-                        .mapToObj(index -> new WeatherForecast(
-                                LocalDate.now().plusDays(index),
-                                random.nextInt(75) - 20, // -20 to 54
-                                SUMMARIES[random.nextInt(SUMMARIES.length)]
-                        )).toList();
+        return IntStream.rangeClosed(1, 5).mapToObj(index -> new WeatherForecast(LocalDate.now().plusDays(index),
+                    random.nextInt(75) - 20,
+                                SUMMARIES[random.nextInt(SUMMARIES.length)])).toList();
     }
 }

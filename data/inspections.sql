@@ -31,6 +31,7 @@ from
 inner join departments as d on
     t.department_id = d.id
 where
-    t.amount is not null
+    t.amount is not null and
+    d.id = 6
 order by
     d."name" asc;
