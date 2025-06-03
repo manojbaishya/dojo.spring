@@ -35,3 +35,5 @@ where
     d.id = 6
 order by
     d."name" asc;
+
+select * from departments as d;
