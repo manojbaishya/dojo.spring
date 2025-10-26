@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TodoDependencies {
     @Bean
-    public TodoService todoService(TodoRepository todoRepository) {
+    TodoService todoService(TodoRepository todoRepository) {
         return new StandardTodoService(todoRepository);
     }
 

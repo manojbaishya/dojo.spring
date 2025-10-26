@@ -1,6 +1,5 @@
 package org.dojo.spring.todo;
 
-import org.dojo.spring.department.Department;
 import org.dojo.spring.shared.exceptions.ResourceNotFoundException;
 
 import java.util.List;

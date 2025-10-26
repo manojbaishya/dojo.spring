@@ -25,74 +25,75 @@ import java.util.List;
 public class DepartmentController {
     private final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
-    private final DepartmentService departmentService;
-    public DepartmentController(DepartmentService departmentService) { this.departmentService = departmentService; }
+    private final DepartmentService _departmentService;
+    
+    public DepartmentController(DepartmentService departmentService) { this._departmentService = departmentService; }
 
-    @PostMapping(value = "/department")
+    @PostMapping(value = DepartmentEndpoints.CREATE_DEPARTMENT)
     public ResponseEntity<DepartmentDto> addDepartment(@RequestBody @Valid DepartmentDto departmentDto) {
         logger.info("Creating Department object.");
         var department = DepartmentMapper.INSTANCE.deserialize(departmentDto);
-        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.addDepartment(department)));
+        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(_departmentService.addDepartment(department)));
     }
 
-    @GetMapping(value = "/departments")
+    @GetMapping(value = DepartmentEndpoints.GET_DEPARTMENTS)
     public ResponseEntity<List<DepartmentProjection>> getDepartments() {
         logger.info("Getting all Department objects.");
-        return ResponseEntity.ok(departmentService.getAllDepartments());
+        return ResponseEntity.ok(_departmentService.getAllDepartments());
     }
 
     @GetMapping(value = "/departments", params = {"transactions"})
-    public ResponseEntity<List<DepartmentDto>> getDepartments(@RequestParam(name = "transactions") Boolean transactions) {
+    public ResponseEntity<List<DepartmentDto>> getDepartments(@RequestParam Boolean transactions) {
         logger.info("Getting all Department objects with Transactions included.");
         if (transactions) {
-            List<Department> departments = departmentService.getAllDepartmentsWithTransactions();
+            List<Department> departments = _departmentService.getAllDepartmentsWithTransactions();
             return ResponseEntity.ok(departments.stream().map(DepartmentMapper.INSTANCE::serialize).toList());
         } else {
-            List<DepartmentProjection> departments = departmentService.getAllDepartments();
+            List<DepartmentProjection> departments = _departmentService.getAllDepartments();
             return ResponseEntity.ok(departments.stream().map(DepartmentMapper.INSTANCE::serialize).toList());
         }
     }
 
-    @GetMapping(value = "/department", params = { "id" })
+    @GetMapping(value = DepartmentEndpoints.GET_DEPARTMENT, params = { "id" })
     public ResponseEntity<DepartmentDto> getDepartmentById(@RequestParam(name = "id") Long departmentId) throws ResourceNotFoundException {
         logger.info("Getting Department object by id.");
-        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.getDepartmentById(departmentId)));
+        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(_departmentService.getDepartmentById(departmentId)));
     }
 
-    @GetMapping(value = "/department", params = { "name", "getTransactions" })
-    public ResponseEntity<DepartmentDto> getDepartmentByName(@RequestParam(name = "name") String departmentName, @RequestParam(name = "getTransactions") boolean getTransactions) throws ResourceNotFoundException {
+    @GetMapping(value = DepartmentEndpoints.GET_DEPARTMENT, params = { "name", "getTransactions" })
+    public ResponseEntity<DepartmentDto> getDepartmentByName(@RequestParam(name = "name") String departmentName, @RequestParam boolean getTransactions) throws ResourceNotFoundException {
         logger.info("Getting Department object by name.");
-        if (!getTransactions) return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.getDepartmentByNameWithoutTransactions(departmentName)));
-        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.getDepartmentByName(departmentName)));
+        if (!getTransactions) return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(_departmentService.getDepartmentByNameWithoutTransactions(departmentName)));
+        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(_departmentService.getDepartmentByName(departmentName)));
     }
 
-    @PutMapping(value = "/department/{id}")
+    @PutMapping(value = DepartmentEndpoints.UPDATE_DEPARTMENT)
     public ResponseEntity<DepartmentDto> updateDepartment(@PathVariable("id") Long departmentId, @RequestBody @Valid DepartmentDto departmentDto) throws ResourceNotFoundException {
         logger.info("Updating Department object.");
         var department = DepartmentMapper.INSTANCE.deserialize(departmentDto);
-        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(departmentService.updateDepartment(departmentId, department)));
+        return ResponseEntity.ok(DepartmentMapper.INSTANCE.serialize(_departmentService.updateDepartment(departmentId, department)));
     }
 
-    @DeleteMapping(value = "/department/{id}")
+    @DeleteMapping(value = DepartmentEndpoints.DELETE_DEPARTMENT)
     public ResponseEntity<String> deleteDepartment(@PathVariable("id") Long departmentId) throws ResourceNotFoundException {
         logger.info("Deleting Department object.");
-        if (departmentService.deleteDepartmentById(departmentId)) return ResponseEntity.ok().body(String.format("Department Id #%d deleted!", departmentId));
+        if (_departmentService.deleteDepartmentById(departmentId)) return ResponseEntity.ok().body(String.format("Department Id #%d deleted!", departmentId));
         else throw new ResourceNotFoundException(String.format("Department Id #%d is not deleted!", departmentId));
     }
 
-    @PostMapping("/department/transaction")
+    @PostMapping(DepartmentEndpoints.ADD_TRANSACTION)
     public ResponseEntity<TransactionDto> addTransaction(@RequestBody @Valid TransactionDto transactionDto) throws ResourceNotFoundException {
         logger.info("Adding Transaction to Department object.");
-        Department department = departmentService.getDepartmentByName(transactionDto.departmentName());
+        Department department = _departmentService.getDepartmentByName(transactionDto.departmentName());
         Transaction transaction = TransactionMapper.INSTANCE.deserialize(transactionDto);
-        Transaction txn = departmentService.addTransaction(department, transaction);
+        Transaction txn = _departmentService.addTransaction(department, transaction);
         return ResponseEntity.ok(TransactionMapper.INSTANCE.serialize(txn));
     }
 
-    @GetMapping(value = "/transactions", params = { "departmentName" })
-    public ResponseEntity<List<TransactionDto>> getTransactions(@RequestParam(name = "departmentName") String departmentName) throws ResourceNotFoundException {
+    @GetMapping(value = DepartmentEndpoints.GET_TRANSACTIONS, params = { "departmentName" })
+    public ResponseEntity<List<TransactionDto>> getTransactions(@RequestParam String departmentName) throws ResourceNotFoundException {
         logger.info("Getting all Transactions for this Department.");
-        Department department = departmentService.getDepartmentByName(departmentName);
+        Department department = _departmentService.getDepartmentByName(departmentName);
         List<Transaction> transactions = department.getTransactions();
         return ResponseEntity.ok(transactions.stream().map(TransactionMapper.INSTANCE::serialize).toList());
     }

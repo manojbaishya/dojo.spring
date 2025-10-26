@@ -20,7 +20,7 @@ import java.time.Duration;
 
 @Configuration
 @EnableCaching
-public class RedisConfig {
+public class RedisConfiguration {
 
     private Jackson2JsonRedisSerializer<Object> createJackson2JsonRedisSerializer() {
         var om = new ObjectMapper();
@@ -30,7 +30,7 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+    RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         var template = new RedisTemplate<String, Object>();
         template.setConnectionFactory(connectionFactory);
 
@@ -48,7 +48,7 @@ public class RedisConfig {
 
 
     @Bean
-    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+    CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = createJackson2JsonRedisSerializer();
 
         var config = RedisCacheConfiguration.defaultCacheConfig()

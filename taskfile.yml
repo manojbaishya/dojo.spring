@@ -4,10 +4,14 @@ tasks:
   build:
     cmds:
       - ./mvnw --batch-mode clean verify
+  package:
+    cmds:
+      - ./mvnw --batch-mode clean package
   run:
     cmds:
       - ./mvnw spring-boot:run
     env:
+      JAVA_HOME: JAVA_HOME
       DATABASE_HOST: DATABASE_HOST
       DATABASE_NAME: DATABASE_NAME
       DATABASE_USERNAME: DATABASE_USERNAME
