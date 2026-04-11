@@ -10,10 +10,11 @@ tasks:
   run:
     cmds:
       - ./mvnw spring-boot:run
+#      - java -jar target/spring-0.0.1-SNAPSHOT.jar
     env:
-      JAVA_HOME: JAVA_HOME
-      DATABASE_HOST: DATABASE_HOST
-      DATABASE_NAME: DATABASE_NAME
-      DATABASE_USERNAME: DATABASE_USERNAME
-      DATABASE_PASSWORD: DATABASE_PASSWORD
-      SERVER_PORT: SERVER_PORT
+      JAVA_HOME: /opt/homebrew/Cellar/openjdk/25/libexec/openjdk.jdk/Contents/Home
+      DATABASE_HOST: localhost:5433
+      DATABASE_NAME: dojo.spring
+      DATABASE_USERNAME: manoj.baishya
+      DATABASE_PASSWORD: postgres
+      SERVER_PORT: 5987

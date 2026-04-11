@@ -10,6 +10,6 @@ public class DepartmentConfiguration {
     @Bean
     @RequestScope
     DepartmentService departmentService(DepartmentRepository departmentRepository, TransactionRepository transactionRepository) {
-        return new StandardDepartmentService(departmentRepository, transactionRepository);
+        return new DepartmentServiceImpl(departmentRepository, transactionRepository);
     }
 }

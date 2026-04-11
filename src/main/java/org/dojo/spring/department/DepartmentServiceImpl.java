@@ -12,14 +12,14 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 
 //@Service // unused because programmatically registered in DepartmentConfiguration.java
-public class StandardDepartmentService implements DepartmentService {
+public class DepartmentServiceImpl implements DepartmentService {
     private static final String ERROR_MESSAGE = "Department does not exist for this id: %s";
 
     private final DepartmentRepository departmentRepository;
     private final TransactionRepository transactionRepository;
 
-    public StandardDepartmentService(DepartmentRepository departmentRepository,
-            TransactionRepository transactionRepository) {
+    public DepartmentServiceImpl(DepartmentRepository departmentRepository,
+                                 TransactionRepository transactionRepository) {
         this.departmentRepository = departmentRepository;
         this.transactionRepository = transactionRepository;
     }

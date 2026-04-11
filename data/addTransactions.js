@@ -1,7 +1,7 @@
 import { getAllDepartments } from "./getAllDepartments.js";
 
 export async function addTransactions(cfg) {
-    const url = `${cfg.server.protocol}://${cfg.server.hostname}${cfg.server.path}/${cfg.paths.addTransaction.name}`;
+    const url = `${cfg.server.protocol}://${cfg.server.hostname}${cfg.server.path}/${cfg.version.v1}/${cfg.paths.addTransaction.name}`;
 
     const departments = await getAllDepartments(cfg);
     console.log(departments);

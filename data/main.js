@@ -4,7 +4,13 @@ import { createDepartments } from "./createDepartments.js";
 import { getAllDepartments } from "./getAllDepartments.js";
 import { addTransactions } from "./addTransactions.js";
 
-// await createDepartments(configuration);
+import logger from './logger.js';
+
+logger.info('Creating departments..');
+await createDepartments(configuration);
+logger.info('Get all departments..');
 const departments = await getAllDepartments(configuration);
 console.log(departments);
-// await addTransactions(configuration);
+
+logger.info('Add transactions to departments..');
+await addTransactions(configuration);

@@ -2,7 +2,10 @@
   "server": {
     "protocol": "http",
     "hostname": "localhost",
-    "path": ":5000"
+    "path": ":5987"
+  },
+  "version": {
+    "v1": "api"
   },
   "paths": {
     "getAllDepartments": {

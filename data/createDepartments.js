@@ -9,7 +9,7 @@ export async function createDepartments(cfg) {
         address: faker.location.streetAddress()
     }));
 
-    const url = `${cfg.server.protocol}://${cfg.server.hostname}${cfg.server.path}/${cfg.paths.createDepartments.name}`;
+    const url = `${cfg.server.protocol}://${cfg.server.hostname}${cfg.server.path}/${cfg.version.v1}/${cfg.paths.createDepartments.name}`;
     for (const dept of departments) {
         try {
             const response = await fetch(url, {

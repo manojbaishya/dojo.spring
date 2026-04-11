@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import org.dojo.spring.department.billing.Transaction;
+import org.dojo.spring.shared.models.Auditable;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "departments")
-public class Department {
+public class Department extends Auditable {
     public Department() { }
     public Department(Long id, String name, String address, String code) {
         this.id = id;
